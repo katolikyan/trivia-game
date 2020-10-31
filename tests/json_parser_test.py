@@ -2,8 +2,11 @@ import pytest
 import os
 from trivia_game.src.json_parser import TriviaJsonParser
 
-def test_json_parser_valid():
-  parser = TriviaJsonParser()
+@pytest.fixture()
+def parser():
+  return TriviaJsonParser()
+
+def test_json_parser_valid(parser):
   fullpath = os.path.join(os.path.dirname(__file__), 'assets_test/valid.json')
   trivia = parser.Parse(fullpath)
   assert isinstance(trivia, dict)
@@ -21,8 +24,7 @@ def test_json_parser_valid():
     "Empty file",
     "Broken json"
   ])
-def test_json_parser_invalid(filepath):
-  parser = TriviaJsonParser()
+def test_json_parser_invalid(parser, filepath):
   fullpath = os.path.join(os.path.dirname(__file__), filepath)
   trivia = parser.Parse(fullpath)
   assert not trivia
