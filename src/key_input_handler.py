@@ -11,7 +11,7 @@ class KeyInputHandler():
 
       try:
         key = int(key)
-        if key in range(count):
+        if key in range(1, count + 1):
           return int(key) - 1
       except:
         pass

@@ -1,27 +1,50 @@
 from typing import List
 import sys
+import os
+import time
 from src.player import Player
 
 
 class Renderer():
 
-  def DisplayQuestion(self, question: str, options: List, count: int) -> None:
-    print(f"\r\nQuestion: {question}\n")
-    for i, option in enumerate(options):
-      print(f"\r{i + 1}) {option}")
+  def __init__(self):
+    self._first_print = 1
+    self._count = None
 
-      #sys.stdout.write(f"\r\nQuestion: {question}\n1. {options[0]} \n2. {options[1]} \n3. {options[2]} \n4. {options[3]} \n")
-    #sys.stdout.flush()
-    #print(f"\nQuestion: {question}\n1. {options[0]} \n2. {options[1]} \n3. {options[2]} \n4. {options[3]} \n\r", flush=True)
+
+  def DisplayQuestion(self, question: str, options: List, count: int) -> None:
+    if self._first_print == 0:
+      self._Clear()
+    else:
+      self._first_print = 0
+
+    to_print = f"\nQuestion: {question}\n\n" 
+    for i, option in enumerate(options):
+      to_print += f"{i + 1}) {option}\n" 
+    print(f'\r{to_print}', end='', flush=True)
+
+    self._count = count + 2
 
 
   def DisplaySuccess(self):
-    print("\r\nCorrect!")
+    self._Clear()
+    print(f'\r\nCorrect!\n', end='', flush=True)
+    time.sleep(3)
+    self._count = 2
 
 
   def DisplayCorrectAnswer(self, answer: str):
-    print(f"\r\n{answer}")
+    self._Clear()
+    print(f'\r\nThe answer is: {answer}\n', end='', flush=True)
+    time.sleep(3)
+    self._count = 2
 
 
   def DisplayUserInfo(self, player):
-    print(f" --- Score: {player.score} --- ")
+    print(f'\r\n --- Score: {player.score} --- ', end='', flush=True)
+    self._count += 2
+
+
+  def _Clear(self):
+    for _ in range(self._count):
+      sys.stdout.write("\x1b[1A\x1b[2K")
