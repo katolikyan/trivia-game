@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
 from trivia_game.src.json_parser import TriviaJsonParser
 import os
-import json
+import random
 
 class TriviaCollector():
 
@@ -26,3 +26,13 @@ class TriviaCollector():
     return [os.path.join(asset_dir, f) for f 
             in os.listdir(asset_dir) if 
             os.path.isfile(os.path.join(asset_dir, f))]
+
+  def GetRandomTrivia(self):
+    ''' Return random trivia from the list '''
+    return random.choice(self.trivias)
+
+  def GetTriviaByIndex(self, index):
+    ''' Returns specific trivia '''
+    if index < 0 or index >= self.count:
+      raise ValueError("Index is out of range")
+    return self.trivias[index]
