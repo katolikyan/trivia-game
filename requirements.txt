@@ -1,1 +1,2 @@
 pytest==6.1.0
+readchar==2.0.1

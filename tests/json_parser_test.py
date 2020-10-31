@@ -1,6 +1,6 @@
 import pytest
 import os
-from trivia_game.src.json_parser import TriviaJsonParser
+from src.json_parser import TriviaJsonParser
 
 @pytest.fixture()
 def parser():

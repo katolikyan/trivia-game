@@ -1,6 +1,6 @@
 import pytest
 import os
-from trivia_game.src.trivia_collector import TriviaCollector
+from src.trivia_collector import TriviaCollector
 
 @pytest.fixture()
 def collector_instanse():

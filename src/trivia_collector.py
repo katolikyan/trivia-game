@@ -1,5 +1,5 @@
 from typing import List, Dict, Optional
-from trivia_game.src.json_parser import TriviaJsonParser
+from src.json_parser import TriviaJsonParser
 import os
 import random
 
