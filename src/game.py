@@ -2,10 +2,12 @@ import os
 import readchar
 import random
 import sys
+import time
 from typing import List, Dict
 from src.renderer import Renderer
 from src.trivia_collector import TriviaCollector
 from src.key_input_handler import KeyInputHandler
+from src.player import Player
 
 
 class TriviaGame():
@@ -14,6 +16,7 @@ class TriviaGame():
     self.trivia_collector = TriviaCollector(os.path.join(app_path, 'assets'))
     self.renderer = Renderer()
     self.key_input_handler = KeyInputHandler()
+    self.player = Player()
   
 
   def run(self):
@@ -23,9 +26,13 @@ class TriviaGame():
     for question in trivia['questions']:
       count, correct_index, options = self._MixAnswers(question)
       self.renderer.DisplayQuestion(question['question'], options, count)
+      self.renderer.DisplayUserInfo(self.player)
+      question_start_time = time.time() #time to calculate score coefficient
       answer = self.key_input_handler.GetAnswer(count)
+
       if answer == correct_index:
         self.renderer.DisplaySuccess()
+        self.player.UpdateScore(30 - (time.time() - question_start_time))
       elif answer == -1:
         return
       else:
