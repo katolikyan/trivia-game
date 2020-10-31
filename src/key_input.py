@@ -6,7 +6,7 @@ class KeyInputHandler():
   def GetAnswer(self, count):
     while(1):
       key = readchar.readkey()
-      if key == 'q':
+      if key == readchar.key.ESC or key == 'q': 
         return -1
 
       try:
@@ -15,3 +15,8 @@ class KeyInputHandler():
           return int(key) - 1
       except:
         pass
+
+  
+  def PressAnyKey(self):
+    readchar.readkey()
+    return 

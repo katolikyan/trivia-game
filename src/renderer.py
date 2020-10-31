@@ -29,14 +29,12 @@ class Renderer():
   def DisplaySuccess(self):
     self._Clear()
     print(f'\r\nCorrect!\n', end='', flush=True)
-    time.sleep(1)
     self._count = 2
 
 
   def DisplayCorrectAnswer(self, answer: str):
     self._Clear()
     print(f'\r\nThe answer is: {answer}\n', end='', flush=True)
-    time.sleep(3)
     self._count = 2
 
 
@@ -48,3 +46,7 @@ class Renderer():
   def _Clear(self):
     for _ in range(self._count):
       sys.stdout.write("\x1b[2K\x1b[1A")
+
+
+  def DestroyRenderer(self):
+    pass
