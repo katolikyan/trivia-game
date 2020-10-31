@@ -1,9 +1,19 @@
 from typing import List, Dict, Optional
 import json
-from src.config import json_errors
+from src.config import asset_debug
 
 
 class TriviaJsonParser():
+
+  def __init__(self):
+    self._errors = {
+      0: None, 
+      1: None, 
+      2: "Json contains nothing",
+      3: "Key in question is missing",
+      4: "Key Value is not an expected type",
+      5: "Values in Incorrect options have to be strings"
+      }
 
   def Parse(self, filepath: str) -> Optional[Dict]:
     ''' Parses and checks JSON and returns Dict with questions '''
@@ -14,8 +24,9 @@ class TriviaJsonParser():
 
       check_code = self._CheckTrivia(trivia)
       if check_code:
-        if json_errors:
-          raise Exception(f"JSON is not valid for trivia. ErrorCode {check_code}")
+        if asset_debug:
+          raise Exception(f"JSON is not valid for current trivia rules. \
+                          {self._errors[check_code]}")
         else:
           return None
 
@@ -27,8 +38,11 @@ class TriviaJsonParser():
   def _DumpJson(self, file) -> Optional[Dict]:
     try:
       trivia = json.load(file)
-    except json.JSONDecodeError:
-      return None
+    except json.JSONDecodeError as error:
+      if asset_debug:
+        raise error
+      else:
+        return None
     return trivia
 
 

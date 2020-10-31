@@ -5,6 +5,7 @@ import sys
 import time
 from typing import List, Dict
 from src.renderer import Renderer
+from src.renderer_curses import RendererCurses
 from src.trivia_collector import TriviaCollector
 from src.key_input_handler import KeyInputHandler
 from src.player import Player
@@ -14,7 +15,8 @@ class TriviaGame():
 
   def __init__(self, app_path: str):
     self.trivia_collector = TriviaCollector(os.path.join(app_path, 'assets'))
-    self.renderer = Renderer()
+    # Change renderers here. All methods have to be the same
+    self.renderer = Renderer() # or Renderer() for simple terminal window
     self.key_input_handler = KeyInputHandler()
     self.player = Player()
   

@@ -9,7 +9,7 @@ class Renderer():
 
   def __init__(self):
     self._first_print = 1
-    self._count = None
+    self._count = 0
 
 
   def DisplayQuestion(self, question: str, options: List, count: int) -> None:
@@ -29,7 +29,7 @@ class Renderer():
   def DisplaySuccess(self):
     self._Clear()
     print(f'\r\nCorrect!\n', end='', flush=True)
-    time.sleep(3)
+    time.sleep(1)
     self._count = 2
 
 
@@ -47,4 +47,4 @@ class Renderer():
 
   def _Clear(self):
     for _ in range(self._count):
-      sys.stdout.write("\x1b[1A\x1b[2K")
+      sys.stdout.write("\x1b[2K\x1b[1A")

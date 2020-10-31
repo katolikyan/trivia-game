@@ -1,2 +1,5 @@
 debug=False
-json_errors=False
+asset_debug=False
+
+HEIGHT=10 
+WIDTH=50
