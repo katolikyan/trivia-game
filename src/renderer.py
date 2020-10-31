@@ -13,12 +13,10 @@ class Renderer():
     #sys.stdout.flush()
     #print(f"\nQuestion: {question}\n1. {options[0]} \n2. {options[1]} \n3. {options[2]} \n4. {options[3]} \n\r", flush=True)
 
+
   def DisplaySuccess(self):
-    sys.stdout.flush()
-    sys.stdout.write("\r\nCorrect!")
-    sys.stdout.flush()
+    print("\r\nCorrect!")
+
 
   def DisplayCorrectAnswer(self, answer: str):
-    sys.stdout.flush()
-    sys.stdout.write(f"\r\n{answer}")
-    sys.stdout.flush()
+    print(f"\r\n{answer}")

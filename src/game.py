@@ -7,6 +7,7 @@ from src.renderer import Renderer
 from src.trivia_collector import TriviaCollector
 from src.key_input_handler import KeyInputHandler
 
+
 class TriviaGame():
 
   def __init__(self, app_path: str):
@@ -14,9 +15,11 @@ class TriviaGame():
     self.renderer = Renderer()
     self.key_input_handler = KeyInputHandler()
   
+
   def run(self):
     trivia = self.trivia_collector.GetRandomTrivia()
     random.shuffle(trivia['questions'])
+
     for question in trivia['questions']:
       count, correct_index, options = self._MixAnswers(question)
       self.renderer.DisplayQuestion(question['question'], options, count)
@@ -24,10 +27,11 @@ class TriviaGame():
       if answer == correct_index:
         self.renderer.DisplaySuccess()
       elif answer == -1:
-        exit()
+        return
       else:
         self.renderer.DisplayCorrectAnswer(question['correct'])
       
+
   def _MixAnswers(self, question: Dict):
     options = question['incorrect'].copy()
     options.append(question['correct'])

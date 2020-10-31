@@ -6,12 +6,14 @@ from src.json_parser import TriviaJsonParser
 def parser():
   return TriviaJsonParser()
 
+
 def test_json_parser_valid(parser):
   fullpath = os.path.join(os.path.dirname(__file__), 'assets_test/valid.json')
   trivia = parser.Parse(fullpath)
   assert isinstance(trivia, dict)
   assert "count" in trivia
   assert "questions" in trivia
+
 
 @pytest.mark.parametrize("filepath", [
   'assets_test/invalid_format.json',

@@ -1,5 +1,6 @@
 import readchar
 
+
 class KeyInputHandler():
 
   def GetAnswer(self, count):

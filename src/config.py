@@ -1,0 +1,2 @@
+debug=False
+json_errors=False
