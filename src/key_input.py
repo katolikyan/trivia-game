@@ -24,4 +24,6 @@ class KeyInputHandler():
 
   def GetString(self):
     nickname = input()
+    if len(nickname) > 15:
+      nickname = nickname[:15]
     return nickname
