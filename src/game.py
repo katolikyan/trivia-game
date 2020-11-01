@@ -17,9 +17,9 @@ class TriviaGame():
   def __init__(self, app_path: str):
     self.trivia_collector = TriviaCollector(os.path.join(app_path, 'assets'))
     # Change renderers here. All methods have to be the same
-    self.renderer = RendererCurses() # or Renderer() for simple terminal window
+    self.renderer = Renderer() # RendererCurses()
     # Change keyInputHandler here. All methods have to be the same
-    self.key_input_handler = KeyInputCurses(self.renderer._window)
+    self.key_input_handler = KeyInputHandler() # KeyInputCurses(self.renderer._window)
     self.player = Player()
   
 
@@ -45,6 +45,14 @@ class TriviaGame():
       else:
         self.renderer.DisplayCorrectAnswer(question['correct'])
         self.key_input_handler.PressAnyKey()
+      
+    # Display score and store nickname in dashboard
+    self.renderer.DisplayFinish(self.player)
+    nickname = self.key_input_handler.GetString()
+    # Get nick in Dushboard 
+    # Show dushboard
+    self.renderer.DestroyRenderer()
+
       
 
   def _MixOptions(self, question: Dict):

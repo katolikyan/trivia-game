@@ -61,7 +61,7 @@ class RendererCurses():
   def __init__(self):
     self._stdscr = curses.initscr()
     self._window = curses.newwin(HEIGHT, WIDTH, 0, 0)
-    self._window.timeout(TIMEOUT)
+    #self._window.timeout(TIMEOUT)
     self._window.keypad(1)
     curses.noecho()
     curses.curs_set(0)
@@ -94,6 +94,13 @@ class RendererCurses():
 
   def DisplayUserInfo(self, player):
     self._window.addstr(0, 4, f"  Score: {player.score}  ")
+
+
+  def DisplayFinish(self, player):
+    self._Clear()
+    curses.echo()
+    self._window.addstr(3, 1, f"Congratulations. Your score is: {player.score}")
+    self._window.addstr(4, 1, f"Enter nickname: {player.score}")
 
 
   def _Clear(self):

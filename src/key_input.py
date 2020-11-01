@@ -20,3 +20,8 @@ class KeyInputHandler():
   def PressAnyKey(self):
     readchar.readkey()
     return 
+
+
+  def GetString(self):
+    nickname = input()
+    return nickname

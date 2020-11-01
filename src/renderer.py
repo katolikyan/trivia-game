@@ -43,10 +43,15 @@ class Renderer():
     self._count += 2
 
 
+  def DisplayFinish(self, player):
+    self._Clear()
+    print(f"\r\nCongratulations. Your score is: {player.score}\nEnter nickname: ", end='', flush=True)
+    self._count = 3
+
   def _Clear(self):
     for _ in range(self._count):
       sys.stdout.write("\x1b[2K\x1b[1A")
 
 
   def DestroyRenderer(self):
-    pass
+    self._Clear()

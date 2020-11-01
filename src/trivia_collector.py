@@ -1,7 +1,8 @@
 from typing import List, Dict, Optional
-from src.json_parser import TriviaJsonParser
 import os
 import random
+from src.json_parser import TriviaJsonParser
+from src.config import asset_debug
 
 
 class TriviaCollector():
@@ -21,6 +22,8 @@ class TriviaCollector():
       if trivia:
         self.count += 1
         trivias.append(trivia)
+    if not trivias and asset_debug:
+      raise ValueError("There is 0 valid JSON trivias in assets folder")
     return trivias
     
 
