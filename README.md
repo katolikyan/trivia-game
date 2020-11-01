@@ -49,4 +49,4 @@ __Gameplay__
 - If there is multiple trivias in assets - trivia picked rundomly
 - The faster you answer - the higher is score
 
-![](./media/trivia_game.gif)
+![](./.media/trivia_game.gif)
