@@ -38,15 +38,29 @@ class Renderer():
     self._count = 2
 
 
-  def DisplayUserInfo(self, player):
+  def DisplayUserInfo(self, player: Player):
     print(f'\r\n --- Score: {player.score} --- ', end='', flush=True)
     self._count += 2
 
 
-  def DisplayFinish(self, player):
+  def DisplayFinish(self, player: Player):
     self._Clear()
     print(f"\r\nCongratulations. Your score is: {player.score}\nEnter nickname: ", end='', flush=True)
     self._count = 3
+
+
+  def DisplayScoreboard(self, top3: list, player: Player):
+    self._Clear()
+    for result in top3:
+      print(f"\r\n{result[0]} : {result[1]}", end='', flush=True)
+      self._count += 1
+
+    self._count -= 1
+    if player.nickname in [res[0] for res in top3]:
+      return 
+    print(f"\r\n ...\n{player.nickname} : {player.score}\n", end='', flush=True)
+    self._count += 3
+
 
   def _Clear(self):
     for _ in range(self._count):

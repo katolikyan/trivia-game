@@ -10,6 +10,7 @@ from src.trivia_collector import TriviaCollector
 from src.key_input import KeyInputHandler
 from src.key_input_curses import KeyInputCurses
 from src.player import Player
+from src.scoreboard import Scoreboard
 
 
 class TriviaGame():
@@ -21,18 +22,20 @@ class TriviaGame():
     # Change keyInputHandler here. All methods have to be the same
     self.key_input_handler = KeyInputHandler() # KeyInputCurses(self.renderer._window)
     self.player = Player()
+    self.scoreboard = Scoreboard()
   
 
   def run(self):
     # get a random trivia and shuffle questions
     trivia = self.trivia_collector.GetRandomTrivia()
     random.shuffle(trivia['questions'])
+
     # Display each question with shaffled options
     for question in trivia['questions']:
       count, correct_index, options = self._MixOptions(question)
       self.renderer.DisplayQuestion(question['question'], options, count)
       self.renderer.DisplayUserInfo(self.player)
-      question_start_time = time.time() #time to calculate score coefficient
+      question_start_time = time.time() # time to calculate score coefficient
       answer = self.key_input_handler.GetAnswer(count)
 
       if answer == correct_index:
@@ -48,11 +51,11 @@ class TriviaGame():
       
     # Display score and store nickname in dashboard
     self.renderer.DisplayFinish(self.player)
-    nickname = self.key_input_handler.GetString()
-    # Get nick in Dushboard 
-    # Show dushboard
+    self.player.nickname = self.key_input_handler.GetString()
+    self.scoreboard.AddToScoreboard(self.player)
+    self.renderer.DisplayScoreboard(self.scoreboard.GetTop3(), self.player)
+    self.key_input_handler.PressAnyKey()
     self.renderer.DestroyRenderer()
-
       
 
   def _MixOptions(self, question: Dict):

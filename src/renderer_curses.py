@@ -92,15 +92,19 @@ class RendererCurses():
     self._window.addstr(3, 1, f"Correct answer is: {answer}")
 
 
-  def DisplayUserInfo(self, player):
+  def DisplayUserInfo(self, player: Player):
     self._window.addstr(0, 4, f"  Score: {player.score}  ")
 
 
-  def DisplayFinish(self, player):
+  def DisplayFinish(self, player: Player):
     self._Clear()
     curses.echo()
     self._window.addstr(3, 1, f"Congratulations. Your score is: {player.score}")
     self._window.addstr(4, 1, f"Enter nickname: {player.score}")
+
+
+  def DisplayScoreboard(self, top3: list, player: Player):
+    pass
 
 
   def _Clear(self):
