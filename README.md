@@ -21,8 +21,8 @@ python3 app.py
 ```
 
 
-- You can also add custom trivias in JSON format to the `asset` folder and run the game.
-The app will cutch all JSONs from the folder, check them to be a valid format for the game and add them up.
+- You can also add custom trivia in JSON format to the `asset` folder and run the game.
+The app will catch all JSONs from the folder, check them to be a valid format for the game, and add them up.
 - Note that if JSON is not valid it will be just skipped. To check the reason JSON is not valid write `True` for `asset_debug` in `src/config.py` file:
 ```python
 debug=False
@@ -38,15 +38,15 @@ pytest -v tests
 
 ### The Game
 __Key Controlls__ 
-- To chose an answer just press desired number
+- To choose an answer just press the desired number
 - When success or correct answer is displayed - press any key to continue
 - press `q` to exit
-> Escape doesn't work on some OS systems for unknown reason. It seems to be `readchar` module issue. `q` always works
+> Escape doesn't work on some OS systems for an unknown reason. It seems to be `readchar` module issue. `q` always works
 
 __Gameplay__
-- Questions are shuffled.
-- Options to choose are shuffled
-- If there is multiple trivias in assets - trivia picked rundomly
+- Questions are shuffled
+- Options to choose from are shuffled
+- If there are multiple trivia in assets - trivia picked randomly
 - The faster you answer - the higher is score
 
 ![](./.media/trivia_game.gif)
